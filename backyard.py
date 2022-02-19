@@ -309,7 +309,7 @@ class changeSchoolYearClass(nfcSQLClass):
             return
 
 
-# 開発、拡張機能を作る際に使ってみてください
+# 開発、拡張機能を作る際に
 class developClass(nfcSQLClass):
     def __init__(self):
         super().__init__()
