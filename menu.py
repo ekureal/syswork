@@ -128,7 +128,6 @@ def menu():
                 editList = hen.geteditList()
                 hen.editdict(editList, '変更前の学年', '変更後の学年')
 
-
                 res = hen.resDecoretor(hen.updateSQL)
                 res('学生情報', '学年', editList[1])
 
