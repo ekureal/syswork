@@ -7,7 +7,7 @@
 <img width="469" alt="スクリーンショット 2022-02-21 17 26 15" src="https://user-images.githubusercontent.com/53808519/154916277-69820337-d016-4faa-9bd5-ccea153ca78d.png">
 
 学生情報・備品情報の管理や登録を行うシステムです。
-<!--  https://youtu.be/nM1gErLJULg -->
+ https://youtu.be/nM1gErLJULg
  
 
  
