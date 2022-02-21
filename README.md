@@ -2,18 +2,18 @@
 学生・備品情報管理
 
 # DEMO
- 
+
 <img width="403" alt="メニュー" src="https://user-images.githubusercontent.com/53808519/154916164-ddaf0fe3-c14f-43db-904e-0d3eb9ba0ce2.png">
 <img width="469" alt="スクリーンショット 2022-02-21 17 26 15" src="https://user-images.githubusercontent.com/53808519/154916277-69820337-d016-4faa-9bd5-ccea153ca78d.png">
 
+学生情報・備品情報の管理や登録を行うシステムです。
 <!--  https://youtu.be/nM1gErLJULg -->
  
-This animation is a "Cat playing on trampoline"!
-You can get basic skills for making physics simulations.
+
  
 # Features
- 
-Physics_Sim_Py used [pyxel](https://github.com/kitao/pyxel) only.
+ <img width="779" alt="スクリーンショット 2022-02-21 17 52 09" src="https://user-images.githubusercontent.com/53808519/154920453-b3ff187f-d680-4e6b-88fc-45d5c5509bea.png">
+
  
 ```python
 import pyxel
