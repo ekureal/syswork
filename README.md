@@ -14,17 +14,15 @@
 # Features
  <img width="779" alt="スクリーンショット 2022-02-21 17 52 09" src="https://user-images.githubusercontent.com/53808519/154920453-b3ff187f-d680-4e6b-88fc-45d5c5509bea.png">
 
- 
-```python
-import pyxel
-```
-[Pyxel](https://github.com/kitao/pyxel) is a retro game engine for Python.
-You can feel free to enjoy making pixel art style physics simulations.
+ 学生情報・備品情報を一元管理し、参照しやすいものにしました。
  
 # Requirement
  
-* Python 3.6.5
-* pyxel 1.0.2
+* Python 3.9.2
+* libusb 1.0.24
+* nfcpy 1.0.3
+* pandas 1.3.4
+
  
 Environments under [Anaconda for Windows](https://www.anaconda.com/distribution/) is tested.
  
