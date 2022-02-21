@@ -22,6 +22,9 @@
 * libusb 1.0.24
 * nfcpy 1.0.3
 * pandas 1.3.4
+* PyMySQL 1.0.2
+* tabulate 0.8.9
+* DateTime 4.3
 
  
 Environments under [Anaconda for Windows](https://www.anaconda.com/distribution/) is tested.
