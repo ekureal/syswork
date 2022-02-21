@@ -57,11 +57,5 @@ python3 menu.py
 # Author
  
 * 飯高 正規
-* R&D Center
 # License
  
-"Physics_Sim_Py" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
- 
-Enjoy making cute physics simulations!
- 
-Thank you!
