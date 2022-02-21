@@ -30,9 +30,9 @@
  
 # Installation
  
-Install libusb with https://github.com/libusb/libusb.
+libusb は右のURLからダウンロードしてください https://github.com/libusb/libusb.
 
-Install nfcpy,pandas,tabulate,DateTime and PyMySQL with pip3 command.
+nfcpy,pandas,tabulate,DateTime,PyMySQL は pip3コマンドでインストールしてください(以下、例).
  
 ```bash
 pip3 install nfcpy
@@ -44,25 +44,20 @@ pip3 install mysqlclient
  
 # Usage
  
-Please create python code named "demo.py".
-And copy &amp; paste [Day4 tutorial code](https://cpp-learning.com/pyxel_physical_sim4/).
- 
-Run "demo.py"
- 
+こちらをダウンロードして、menu.pyを目的のSQLサーバーに接続できるようにしてから実行してください。
+
 ```bash
-python demo.py
+python3 menu.py
 ```
  
 # Note
  
-I don't test environments under Linux and Mac.
+ Linux,Windows環境では動作確認をしていません。
  
 # Author
  
-* Hayabusa
+* 飯高 正規
 * R&D Center
-* Twitter : https://twitter.com/Cpp_Learning
- 
 # License
  
 "Physics_Sim_Py" is under [MIT license](https://en.wikipedia.org/wiki/MIT_License).
