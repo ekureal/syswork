@@ -27,19 +27,19 @@
 * DateTime 4.3
 
  
-Environments under [Anaconda for Windows](https://www.anaconda.com/distribution/) is tested.
- 
-```bash
-conda create -n pyxel pip python=3.6 Anaconda
-activate pyxel
-```
  
 # Installation
  
-Install Pyxel with pip command.
+Install libusb with https://github.com/libusb/libusb.
+
+Install nfcpy,pandas,tabulate,DateTime and PyMySQL with pip3 command.
  
 ```bash
-pip install pyxel
+pip3 install nfcpy
+pip3 install pandas
+pip3 install tabulate 
+pip3 install datetime
+pip3 install mysqlclient
 ```
  
 # Usage
