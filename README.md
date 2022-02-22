@@ -74,4 +74,7 @@ python3 menu.py
 # Author
  
 * 飯高 正規
+#Licence
+
+GNU General Public License v3.0
  
