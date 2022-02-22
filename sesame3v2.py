@@ -12,11 +12,11 @@ import sys
 
 # ----------------------------------sesame3情報----------------------------------
 # アカウントの API KEY
-auth = WebAPIAuth(apikey="aDASdrwlGI1VZSORfifH82xHJxTYoPBXaOfcnl1i")
+auth = WebAPIAuth(apikey="auth")
 # Sesame 3 の UUID
-your_key_uuid = "41E14BC8-4C5D-327A-922A-3584FDB7A214"
+your_key_uuid = "uuid"
 # 前段の手順で取得した秘密鍵の HEX 文字列
-your_key_secret = "75d2cce98a5385affde4f81691e87c49"
+your_key_secret = "secret"
 device = CHSesame2(authenticator=auth, device_uuid=your_key_uuid, secret_key=your_key_secret)
 
 # -----------------------------------ロガー生成-----------------------------------
@@ -44,7 +44,7 @@ class MyCardReader(object):
         self.__user = 'sample'
         self.__passwd = 'sample'
         self.__host = 'hostname'
-        self.__db = 'syswork'
+        self.__db = 'dbname'
         self.__charset = 'utf8'
         self.idm = None
         self.checklist = []
