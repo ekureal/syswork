@@ -1,5 +1,6 @@
 # syswork
 学生・備品情報管理
+解錠システム(sesamev3)
 
 # DEMO
 
@@ -33,7 +34,7 @@
  
 libusb は右のURLからダウンロードしてください https://github.com/libusb/libusb.
 
-nfcpy,pandas,tabulate,DateTime,PyMySQL は pip3コマンドでインストールしてください(以下、例).
+nfcpy,pandas,tabulate,DateTime,PyMySQL は pip3コマンドでインストールしてください(以下、例)。
  
 ```bash
 pip3 install nfcpy
@@ -53,7 +54,7 @@ python3 menu.py
  
 # Note
  
- Linux,Windows環境では動作確認をしていません。
+ Linux,Windows環境では動作確認をしておりません。
  
 # Author
  
