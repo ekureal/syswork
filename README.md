@@ -12,6 +12,10 @@
 ご興味ございましたら以下のリンクから簡単な動作状況をご確認くださいませ。
  https://youtu.be/nM1gErLJULg
  
+ 
+<img width="817" alt="スクリーンショット 2022-02-22 12 12 53" src="https://user-images.githubusercontent.com/53808519/155057182-d032cadd-286f-4d2c-913a-9be8a5ace802.png">
+
+解錠システムは登録した学生情報を参照して解錠するかどうかを決めるシステムです。
 
  
 # Features
@@ -20,6 +24,7 @@
  学生情報・備品情報を一元管理し、参照しやすいものにしました。
  
 # Requirement
+ menu.py,backyard.py
  
 * Python 3.9.2
 * libusb 1.0.24
@@ -28,6 +33,9 @@
 * PyMySQL 1.0.2
 * tabulate 0.8.9
 * DateTime 4.3
+
+sesamev3.py
+
 
  
  
