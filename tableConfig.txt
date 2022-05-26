@@ -1,29 +1,52 @@
+use syswork
 
+ex)
+create table 学生情報 (idm char(20) not null primary key,
+学籍番号 char(10) not null,
+学年 int not null,
+氏名 char(30) not null,
+最終更新 TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);
+
+create table 備品情報 (idm char(20) not null primary key,備品名 char(20) not null,備品状態 char(3) not null DEFAULT '在庫');
+
+mysql> show tables;
 +-------------------+
 | Tables_in_syswork |
 +-------------------+
 | 備品情報          |
 | 学生情報          |
+| 貸出表            |
 +-------------------+
-2 rows in set (0.00 sec)
-
-mysql> show columns from 備品情報;
-+----------+----------+------+-----+---------+-------+
-| Field    | Type     | Null | Key | Default | Extra |
-+----------+----------+------+-----+---------+-------+
-| idm      | char(20) | NO   | PRI | NULL    |       |
-| 備品名   | char(20) | NO   |     | NULL    |       |
-| 備品状態 | char(3)  | NO   |     | 在庫    |       |
-+----------+----------+------+-----+---------+-------+
-3 rows in set (0.01 sec)
 
 mysql> show columns from 学生情報;
-+----------+-----------+------+-----+-------------------+-----------------------------------------------+
-| Field    | Type      | Null | Key | Default           | Extra                                         |
-+----------+-----------+------+-----+-------------------+-----------------------------------------------+
-| idm      | char(20)  | NO   | PRI | NULL              |                                               |
-| 学籍番号 | char(10)  | NO   |     | NULL              |                                               |
-| 学年     | int       | NO   |     | NULL              |                                               |
-| 氏名     | char(30)  | NO   |     | NULL              |                                               |
-| 最終更新 | timestamp | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
-+----------+-----------+------+-----+-------------------+-----------------------------------------------+
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+| Field        | Type      | Null | Key | Default           | Extra                                         |
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+| idm          | char(20)  | NO   | PRI | NULL              |                                               |
+| 学籍番号     | char(10)  | NO   |     | NULL              |                                               |
+| 学年         | int       | NO   |     | NULL              |                                               |
+| 氏名         | char(30)  | NO   |     | NULL              |                                               |
+| 最終更新     | timestamp | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+
+
+mysql> show columns from 貸出表;
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+| Field        | Type      | Null | Key | Default           | Extra                                         |
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+| 備品名       | char(20)  | NO   |     | NULL              |                                               |
+| 氏名         | char(30)  | NO   |     | NULL              |                                               |
+| 貸出日時     | timestamp | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+
+mysql> show columns from 備品情報;
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+| Field        | Type      | Null | Key | Default           | Extra                                         |
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+| idm          | char(20)  | NO   | PRI | NULL              |                                               |
+| 資産番号     | char(20)  | NO   |     | NULL              |                                               |
+| 備品名       | char(20)  | NO   |     | NULL              |                                               |
+| 備品状態     | char(3)   | NO   |     | 在庫              |                                               |
+| 最終更新     | timestamp | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++--------------+-----------+------+-----+-------------------+-----------------------------------------------+
+

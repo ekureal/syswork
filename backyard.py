@@ -268,7 +268,8 @@ class changeSchoolYearClass(nfcSQLClass):
         elif keyPress not in self.schoolYearList:
             raise ValueError('無効な入力値です、メニューに戻ります')
             return
-
+class lendingClass(nfcSQLClass):
+    def __init__(self):
 
 # 開発、拡張機能を作る際に使ってみてください
 class developClass(nfcSQLClass):
