@@ -4,6 +4,7 @@ from backyard import resisterItemClass
 from backyard import resisterStudentClass
 from backyard import changeSchoolYearClass
 from backyard import developClass
+from backyard import nfcSQLClass
 
 # public 関数
 import sys
@@ -19,7 +20,8 @@ def menu():
         print('2:備品情報確認')
         print('3:学生情報登録')
         print('4:備品登録')
-        print('5:学年変更')
+        print('5:備品登録(nfcなし)')
+        print('6:学年変更')
         print('0:ログアウト')
         print('--------------------------------------------------------')
         # メニューの処理。キー入力に従って処理が行われる
@@ -108,8 +110,40 @@ def menu():
                 print('Errorが発生しました:%s' % (e))
                 tool.errorLog()
 
-        # 5:学年変更処理,学年変更部分以外はほぼ3と同様
+        # 5:備品登録処理,備品名の入力処理以外は3と同様
         elif keyPress == '5':
+            tool = resisterItemClass()
+
+            try:
+
+                # ---------------備品名の入力処理,任意の備品名の入力------------------
+                print('資産番号を決定してください')
+                tool.editListInput('資産番号:')
+                editList = tool.geteditList()
+                inputAsset = str(editList)[1:-1]
+
+                assetNum = tool.SQLRead("select 資産番号 from 備品情報 where idm = '{}'".format(inputAsset))
+                tool.isResister(inputAsset, assetNum, '既に登録されている備品情報です、メニューに戻ります')
+
+                print('備品名を決定してください')
+                tool.editListInput('備品名：')
+                # --------------------------------------------------------------
+
+                editList = tool.geteditList()
+                tool.editdict(editList,'資産番号','備品名')
+
+                res = tool.resDecoretor(tool.SQLCommit)
+                res("INSERT INTO 備品情報(idm,資産番号,備品名) VALUES('Not exist',{})".format(str(editList)[1:-1]))
+
+            except OSError:
+                print('OSError：nfcリーダーが接続されていません。メニューに戻ります')
+            except ValueError as v:
+                print(v)
+            except Exception as e:
+                print('Errorが発生しました:%s' % (e))
+                tool.errorLog()
+        # 6:学年変更処理,学年変更部分以外はほぼ3と同様
+        elif keyPress == '6':
             change = changeSchoolYearClass()
             try:
                 change.nfcConnect()
@@ -137,7 +171,34 @@ def menu():
             except Exception as e:
                 print('Errorが発生しました:%s' % (e))
                 change.errorLog()
+        elif keyPress == '7':
+            Lending = nfcSQLClass()
+            try:
+                Lending.nfcConnect()
+                idm = Lending.getidm()
 
+                SQLidm = Lending.SQLRead("select idm from 備品情報 where idm = '{}'".format(idm))
+                Lending.isNotResister(idm, str(SQLidm)[3:19], '登録されていない学生です')
+
+                # ---------------学年取得処理(上:変更前,下:変更後)-------------------
+                SQLYear = Lending.SQLRead("select 学年 from 学生情報 where idm='{}'".format(idm))
+                editList = Lending.geteditList()
+                editList.append(str(SQLYear[1])[1:2])
+                Lending.inputYear()
+                # --------------------------------------------------------------
+                Lending.editdict(editList, '変更前の学年', '変更後の学年')
+
+
+                res = Lending.resDecoretor(Lending.SQLCommit)
+                res("UPDATE 学生情報 SET 学年 = {} where idm = '{}'".format(int(editList[1]),idm))
+
+            except OSError:
+                print('OSError：nfcリーダーが接続されていません。メニューに戻ります')
+            except ValueError as v:
+                print(v)
+            except Exception as e:
+                print('Errorが発生しました:%s' % (e))
+                Lending.errorLog()
         # develop:プログラム改善用
         elif keyPress == 'develop':
             dev = developClass()
