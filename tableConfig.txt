@@ -1,6 +1,6 @@
 use syswork
 
-ex)
+ex)     
 create table 学生情報 (idm char(20) not null primary key,
 学籍番号 char(10) not null,
 学年 int not null,

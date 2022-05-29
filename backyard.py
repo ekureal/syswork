@@ -270,6 +270,38 @@ class changeSchoolYearClass(nfcSQLClass):
             return
 class lendingClass(nfcSQLClass):
     def __init__(self):
+        super().__init__()
+
+    def nfcConnectItem(self):
+
+        print('nfcタグ(備品タグ)をnfcリーダーにかざしてください。\n 待機中...')
+
+        with nfc.ContactlessFrontend('usb') as clf:
+
+            # 5秒間カードが置かれなかった場合処理が終了する(tag == None)
+            after5s = lambda: time.time() - started > 5
+            started = time.time()
+
+            # タグが読み込まれた場合はself.nfcReadが実行される
+            tag = clf.connect(rdwr={'on-connect': self.nfcRead}, terminate=after5s)
+            if tag is None:
+                raise ValueError('ICカードが置かれていません。メニューに戻ります')
+                return
+
+    def nfcReadItem(self, tag):
+         # nfcタグがtype2タグの時に読み取り,idmだけを読み取る
+        if isinstance(tag, nfc.tag.tt2.Type2Tag):
+            try:
+                # idmの加工
+                block_idm = binascii.hexlify(tag.identifier)
+                # idmのデコード処理
+                self.idm = block_idm.decode('shift-jis')
+
+                print('読み込みが完了しました。備品を離してください')
+                return self.idm
+            except Exception as e:
+                print("error: %s" % e)
+                return
 
 # 開発、拡張機能を作る際に使ってみてください
 class developClass(nfcSQLClass):

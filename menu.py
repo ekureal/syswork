@@ -4,6 +4,7 @@ from backyard import resisterItemClass
 from backyard import resisterStudentClass
 from backyard import changeSchoolYearClass
 from backyard import developClass
+from backyard import lendingClass
 from backyard import nfcSQLClass
 
 # public 関数
@@ -22,6 +23,8 @@ def menu():
         print('4:備品登録')
         print('5:備品登録(nfcなし)')
         print('6:学年変更')
+        print('7:貸出')
+        print('8:返却')
         print('0:ログアウト')
         print('--------------------------------------------------------')
         # メニューの処理。キー入力に従って処理が行われる
@@ -172,25 +175,42 @@ def menu():
                 print('Errorが発生しました:%s' % (e))
                 change.errorLog()
         elif keyPress == '7':
-            Lending = nfcSQLClass()
+            Lending = lendingClass()
             try:
                 Lending.nfcConnect()
                 idm = Lending.getidm()
 
                 SQLidm = Lending.SQLRead("select idm from 備品情報 where idm = '{}'".format(idm))
                 Lending.isNotResister(idm, str(SQLidm)[3:19], '登録されていない学生です')
+                shineee = Lending.SQLRead("select 氏名 from 学生情報 where idm = '{}'".format(idm))
 
-                # ---------------学年取得処理(上:変更前,下:変更後)-------------------
-                SQLYear = Lending.SQLRead("select 学年 from 学生情報 where idm='{}'".format(idm))
-                editList = Lending.geteditList()
-                editList.append(str(SQLYear[1])[1:2])
-                Lending.inputYear()
+                # ---------------つかれた！-------------------
+                Lending.nfcConnectItem()
+                idmItem = Lending.getidm()
+                BihinName = Lending.SQLRead("select 備品名 from 備品情報 where idm = '{}'".format(idmItem))
                 # --------------------------------------------------------------
-                Lending.editdict(editList, '変更前の学年', '変更後の学年')
 
+                lender = Lending.resDecoretor(Lending.SQLCommit)
+                lender("UPDATE 備品情報 SET 備品状態 = '貸出' where idm = '{}'".format(idm))
+                lender("INSERT INTO 貸出表(備品名,氏名) VALUES('{}','{}')".format(BihinName,shineee))
+        elif keyPress == '8':
+            Lending = lendingClass()
+            try:
+                Lending.nfcConnect()
+                idm = Lending.getidm()
 
-                res = Lending.resDecoretor(Lending.SQLCommit)
-                res("UPDATE 学生情報 SET 学年 = {} where idm = '{}'".format(int(editList[1]),idm))
+                SQLidm = Lending.SQLRead("select idm from 備品情報 where idm = '{}'".format(idm))
+                Lending.isNotResister(idm, str(SQLidm)[3:19], '登録されていない学生です')
+                shineee = Lending.SQLRead("select 氏名 from 学生情報 where idm = '{}'".format(idm))
+
+                # ---------------つかれた！-------------------
+                
+                # --------------------------------------------------------------
+
+                lender = Lending.resDecoretor(Lending.SQLCommit)
+                lender("UPDATE 備品情報 SET 備品状態 = '在庫' where idm = '{}'".format(idm))
+                lender("DELETE FROM 学生情報 WHERE 氏名 = '{}".format(shineee))
+
 
             except OSError:
                 print('OSError：nfcリーダーが接続されていません。メニューに戻ります')
